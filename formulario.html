@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Formulario de Admisión - Edgewood University ESL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #14141a;
+      --ink-soft: #1e1f28;
+      --cardinal: #c41230;
+      --cardinal-dark: #8f0e22;
+      --parchment: #f6f1e4;
+      --parchment-line: #e2d7ba;
+      --navy: #1d2b4f;
+      --gold: #c9a227;
+      --paper: #fffdf8;
+    }
+
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background: var(--parchment);
+      color: var(--ink);
+    }
+
+    h1, h2 { font-family: 'Fraunces', serif; }
+
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    /* === NAVBAR === */
+    .navbar {
+      background: var(--parchment);
+      border-bottom: 1px solid var(--parchment-line);
+      padding: 18px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container { display: flex; align-items: center; gap: 14px; }
+    .logo-container img { height: 42px; width: auto; }
+    .logo-text {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .back-link {
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .back-link:hover { color: var(--cardinal); }
+
+    /* === HERO STRIP === */
+    .form-hero {
+      background: var(--ink);
+      background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1.6px);
+      background-size: 26px 26px;
+      padding: 70px 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .form-hero .eyebrow { color: var(--gold); display: block; margin-bottom: 16px; }
+    .form-hero h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 600; margin-bottom: 14px; }
+    .form-hero p { font-size: 1.05rem; color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto; }
+
+    /* === FORM SECTION === */
+    .form-section { padding: 60px 20px 110px; }
+
+    .form-card {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(20,20,26,0.12);
+      padding: 50px;
+      position: relative;
+    }
+
+    .form-card::before, .form-card::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 26px; height: 26px;
+      background: var(--parchment);
+      border-radius: 50%;
+      transform: translateY(-50%);
+    }
+    .form-card::before { left: -13px; }
+    .form-card::after { right: -13px; }
+
+    .form-card .eyebrow { color: var(--navy); display: block; margin-bottom: 10px; }
+    .form-card h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 8px; }
+    .form-card .subtitle { color: #6b6455; margin-bottom: 35px; font-size: 0.96rem; }
+
+    .form-group { margin-bottom: 22px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.88rem;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--parchment-line);
+      border-radius: 10px;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--ink);
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--cardinal);
+    }
+
+    textarea { resize: vertical; min-height: 100px; }
+
+    fieldset { border: none; margin-bottom: 22px; }
+    fieldset legend { font-weight: 600; font-size: 0.88rem; margin-bottom: 10px; color: var(--ink); }
+
+    .radio-group { display: flex; gap: 20px; flex-wrap: wrap; }
+    .radio-option { display: flex; align-items: center; gap: 8px; }
+    .radio-option input { width: auto; }
+
+    .checkbox-line { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 30px; }
+    .checkbox-line input { width: auto; margin-top: 3px; }
+    .checkbox-line label { font-weight: 400; font-size: 0.86rem; color: #6b6455; margin-bottom: 0; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--cardinal);
+      color: #fff;
+      border: none;
+      padding: 17px;
+      border-radius: 999px;
+      font-family: 'Work Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.02rem;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 14px 30px rgba(196,18,48,0.3);
+    }
+    .submit-btn:hover { background: var(--cardinal-dark); transform: translateY(-2px); }
+
+    /* === CONFIRMATION === */
+    .confirmation {
+      display: none;
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 20px;
+      box-shadow: 0 25px 60px rgba(20,20,26,0.12);
+      padding: 60px 50px;
+      text-align: center;
+      position: relative;
+    }
+
+    .stamp-approved {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      border: 3px dashed var(--cardinal);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+      transform: rotate(-8deg);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--cardinal);
+      line-height: 1.3;
+    }
+
+    .confirmation h2 { font-size: 1.7rem; margin-bottom: 15px; font-weight: 700; }
+    .confirmation p { color: #6b6455; font-size: 1.02rem; line-height: 1.65; }
+
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+      .form-card, .confirmation { padding: 34px 26px; }
+      .navbar { padding: 15px 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo-container">
+      <img src="EDGEWOOD.jpeg" alt="Edgewood University">
+      <span class="logo-text">Edgewood University</span>
+    </div>
+    <a href="index.html" class="back-link">← Volver al inicio</a>
+  </nav>
+
+  <!-- HERO STRIP -->
+  <section class="form-hero">
+    <span class="eyebrow">Boarding pass · Paso final</span>
+    <h1>Formulario de Admisión</h1>
+    <p>Completa tus datos para iniciar tu proceso de aplicación al Programa ESL de Edgewood University.</p>
+  </section>
+
+  <!-- FORM SECTION -->
+  <section class="form-section">
+    <div class="form-card" id="formCard">
+      <span class="eyebrow">Datos del aplicante</span>
+      <h2>Cuéntanos sobre ti</h2>
+      <p class="subtitle">Todos los campos marcados con * son obligatorios.</p>
+
+      <form id="admisionForm" action="https://formspree.io/f/mvkozozr" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre *</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="apellido">Apellido *</label>
+            <input type="text" id="apellido" name="apellido" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Correo electrónico *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono / WhatsApp *</label>
+            <input type="tel" id="telefono" name="telefono" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pais">País de residencia *</label>
+            <input type="text" id="pais" name="pais" required>
+          </div>
+          <div class="form-group">
+            <label for="nacimiento">Fecha de nacimiento *</label>
+            <input type="date" id="nacimiento" name="nacimiento" required>
+          </div>
+        </div>
+
+        <fieldset>
+          <legend>Nivel actual de inglés *</legend>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="nivel-basico" name="nivel" value="Básico" required>
+              <label for="nivel-basico">Básico</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="nivel-intermedio" name="nivel" value="Intermedio">
+              <label for="nivel-intermedio">Intermedio</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="nivel-avanzado" name="nivel" value="Avanzado">
+              <label for="nivel-avanzado">Avanzado</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="form-group">
+          <label for="programa">Fecha de inicio deseada</label>
+          <select id="programa" name="programa">
+            <option value="">Selecciona una opción</option>
+            <option value="Próximo trimestre">Próximo trimestre</option>
+            <option value="En 6 meses">En 6 meses</option>
+            <option value="Aún no lo sé">Aún no lo sé</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">¿Por qué te interesa el Programa ESL?</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos brevemente tu motivación..."></textarea>
+        </div>
+
+        <div class="checkbox-line">
+          <input type="checkbox" id="terminos" name="terminos" required>
+          <label for="terminos">Acepto ser contactado/a por el equipo de admisiones para continuar con el proceso.</label>
+        </div>
+
+        <button type="submit" class="submit-btn">Enviar aplicación</button>
+      </form>
+    </div>
+
+    <!-- CONFIRMATION -->
+    <div class="confirmation" id="confirmationCard">
+      <div class="stamp-approved">SOLICITUD<br>★ RECIBIDA ★</div>
+      <h2>¡Aplicación recibida!</h2>
+      <p>Gracias por tu interés en el Programa ESL de Edgewood University. Nuestro equipo de admisiones revisará tu información y se pondrá en contacto contigo pronto.</p>
+    </div>
+  </section>
+
+  <script>
+    // Envía el formulario a Formspree; muestra confirmación solo si fue exitoso.
+    const form = document.getElementById('admisionForm');
+    const submitBtn = form.querySelector('.submit-btn');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          document.getElementById('formCard').style.display = 'none';
+          document.getElementById('confirmationCard').style.display = 'block';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          alert('Hubo un problema al enviar tu aplicación. Por favor intenta de nuevo.');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar aplicación';
+        }
+      } catch (err) {
+        alert('No se pudo conectar. Revisa tu conexión a internet e intenta de nuevo.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar aplicación';
+      }
+    });
+  </script>
+
+</body>
+</html>
